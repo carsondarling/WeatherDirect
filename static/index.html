@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<title>Carson Darling</title>
+	<meta name="author" content="Carson Darling" />
+	<meta name="description" content="Explorations and writings from Carson Darling." />
+	
+	<!-- Included CSS Files -->
+	<link href="/static/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/static/stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
+	<!--[if IE]>
+		<link href="/static/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<![endif]-->
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#url').keypress(function (e) {
+				if (e.which == 13) {
+					var loc = $('#url').val();
+					if (loc.length === 0) { loc = $('#url').attr('placeholder'); }
+					window.location.href = "/" + loc;
+					return false;
+				}
+			});
+		});
+		
+	</script>
+
+</head>
+<body>
+
+<div id="content">
+	<img id="icon" src="/static/img/weather.svg">
+	<h1>Weather Direct</h1>
+
+	<p>Getting the weather should be easy. <a href="http://www.weather.com">Weather.com</a>  doesn't make it so. Now, get right to the weather.</p>
+
+	<p class="url">weather.carsondarling.com/<input id="url" type="text" placeholder="boston" /><p>
+
+	<p>The idea originally came about from a friend of mine, <a href="http://www.trevorfilter.com">Trevor Filter</a>, who pointed out that Weather.com should have simple URL redirection. Ever since he pointed it out, it's bugged me. Yes, I know that you can simply Google "weather" and it will get you close, but that's just not as fulfilling.</p>
+
+	<p>To make this work, the search string you enter is run through Google's geocoding API, and either a postal code or a city & state is pulled out. If nothing is found, it just uses Weather.com's search on the string you provided. This gives slightly better results that just directly searching.</p>
+
+	<p>If you have suggestions for domain names, <a href="mailto:carsondarling@gmail.com">let me know</a>!.
+</div>
+
+<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+
+</body>
+</html>	

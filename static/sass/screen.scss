@@ -1,0 +1,52 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+@import url(http://fonts.googleapis.com/css?family=Antic+Didone|Unica+One);
+
+body {
+	font-family: 'Antic Didone', serif;
+}
+
+h1 {
+	font-size: 3em;
+	font-family: 'Unica One', cursive;
+	text-transform: uppercase;
+}
+
+a {
+	color: #F7941E;
+}
+
+p {
+	margin-top: 1em;
+	font-size: 1.2em;
+	line-height: 1.4em;
+
+	&.url {
+		background: #FFF200;
+	}
+}
+
+#url {
+	padding: 8px;
+	width: 100px;
+
+	font-size: 1.2em;
+	font-faimly: 'Antic Didone', serif;
+	color: #bbb;
+}
+
+#content {
+	margin: 50px auto 50px;
+	width: 500px;
+
+	text-align: center;
+
+	#icon {
+		width: 50%;
+	}
+}

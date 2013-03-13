@@ -1,28 +1,66 @@
+// ============================================================================
+//
+// Ra.in - Weather.com URL shortening
+//
+// Carson Darling
+//
+// ============================================================================
+
+// Includes
 var express = require('express');
 var geocoder = require('geocoder');
 var winston = require('winston');
 
 
+// ============================================================================
+// Logging
+// ============================================================================
+
+// Enable web server logging; pipe those log messages through Winston
+var log = new winston.Logger({
+	transports: [
+		//new winston.transports.Console({colorize: false, json: true}),
+		new winston.transports.Console({colorize: true, json: false})
+	]
+});
+var winstonStream = {
+	write: function(message, encoding) {
+		log.info(message);
+	}
+};
+
+
+// ============================================================================
+// Set up Express app
+// ============================================================================
+
 var app = express();
+app.use(express.logger({stream:winstonStream}));
 
-// TODO: Add winston logging
 
-// About page routing
+// ============================================================================
+// Routing
+// ============================================================================
+
+// TODO: About page
 app.get('/', function(req, res){
 	// Send about page
-	res.send('hello world');
+	res.sendfile('static/index.html');
 });
 
-// Favicon
+// TODO: Favicon
 app.get('/favicon.ico', function(req, res) {
 	res.send('');
 });
 
+app.use('/static', express.static('static/'));
+
 // Weather.com interface
 app.get('/:loc', function(req, res) {
+
 	// Grab query string
 	var search = req.params.loc;
-	if (!search) { return res.redirect('/'); }
+	if (!search) { return res.redirect(303, '/'); }
 
 	// Default to query to search string
 	var query = search;
@@ -61,10 +99,14 @@ app.get('/:loc', function(req, res) {
 			}
 		}
 
+		// Redirect to Weather.com
 		var redir = 'http://www.weather.com/search/enhancedlocalsearch?where=' + query;
-		// res.send(redir);
 		res.redirect(303, redir);
 	});
 });
+
+// ============================================================================
+// Start app
+// ============================================================================
 
 app.listen(3000);
